@@ -1,0 +1,40 @@
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+enum State {
+  Started
+  Completed
+}
+
+type GameSession {
+  id: ID!
+  memoTest: MemoTest!
+  score: Int!
+  completed: Boolean!
+  retries: Int!
+  numberOfPairs: Int!
+  state: State!
+}
+
+
+type MemoTest {
+  id: ID!
+  name: String!
+  images: [String!]!
+  gameSessions: [GameSession!]!
+}
+
+type Query {
+  memoTest(id: ID! @eq): MemoTest @find
+  memoTests: [MemoTest!]! @all
+  gameSession(id: ID! @eq): GameSession @find
+}
+
+type Mutation {
+  createGameSession(memo_test_id: ID!, score: Int!, retries: Int!, numberOfPairs: Int!, state: State!): GameSession! @create
+  updateGameSession(id: ID!, score: Int, completed: Boolean, retries: Int, numberOfPairs: Int, state: State): GameSession! @update
+  addImageMemoTest(id: ID!, newImages: [String]): MemoTest! @field(resolver: "App\\GraphQL\\Mutations\\AddImageMemoTest")
+  deleteImageMemoTest(id: ID!, imageIndex: Int!): MemoTest! @field(resolver: "App\\GraphQL\\Mutations\\DeleteImageMemoTest")
+  createMemoTest(name: String!, images: [String]): MemoTest! @create
+  deleteMemoTest(id: ID! @whereKey): MemoTest! @delete
+}
