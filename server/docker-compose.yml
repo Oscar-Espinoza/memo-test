@@ -47,6 +47,13 @@ services:
                 - "-p${DB_PASSWORD}"
             retries: 3
             timeout: 5s
+    composer:
+        image: composer:latest
+        volumes:
+            - .:/app
+        command: composer install --ignore-platform-reqs --no-interaction --prefer-dist
+        environment:
+            COMPOSER_PROCESS_TIMEOUT: 600
 networks:
     sail:
         driver: bridge
