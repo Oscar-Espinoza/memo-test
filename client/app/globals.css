@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.cardContainer {
+  transform-style: preserve-3d;
+  transition: all 0.5 ease;
+}
+
+.showBack {
+  transform: rotateY(180deg);
+}
+
+.cardFront {
+  backface-visibility: hidden;
+}
+
+.cardBack {
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}

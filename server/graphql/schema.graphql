@@ -19,9 +19,10 @@ type GameSession {
 
 type MemoTest {
   id: ID!
-  name: String!
-  images: [String!]!
+  name: String
   gameSessions: [GameSession!]!
+  images: [String!]!
+  highestScore: Int @field(resolver: "App\\GraphQL\\Queries\\MemoTestResolver@highestScore")
 }
 
 type Query {
@@ -31,9 +32,12 @@ type Query {
 }
 
 type Mutation {
-  createGameSession(memo_test_id: ID!, score: Int!, retries: Int!, numberOfPairs: Int!, state: State!): GameSession! @create
+  createGameSession(memo_test_id: ID!, score: Int!, retries: Int!, numberOfPairs: Int!, state: State): GameSession! @create
+
   updateGameSession(id: ID!, score: Int, completed: Boolean, retries: Int, numberOfPairs: Int, state: State): GameSession! @update
+
   addImageMemoTest(id: ID!, newImages: [String]): MemoTest! @field(resolver: "App\\GraphQL\\Mutations\\AddImageMemoTest")
+
   deleteImageMemoTest(id: ID!, imageIndex: Int!): MemoTest! @field(resolver: "App\\GraphQL\\Mutations\\DeleteImageMemoTest")
   createMemoTest(name: String!, images: [String]): MemoTest! @create
   deleteMemoTest(id: ID! @whereKey): MemoTest! @delete

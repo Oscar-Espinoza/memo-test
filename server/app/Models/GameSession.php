@@ -12,7 +12,7 @@ class GameSession extends Model
   use HasFactory;
 
   protected $fillable = [
-    'memo_test_id', 'score', 'completed', 'retries', 'numberOfPairs', 'state'
+    'memo_test_id', 'score', 'retries', 'numberOfPairs', 'state'
   ];
 
   protected $casts = [

@@ -13,7 +13,6 @@ return new class extends Migration
       $table->id();
       $table->foreignId('memo_test_id')->constrained('memo_tests');
       $table->integer('score');
-      $table->boolean('completed');
       $table->integer('retries')->default(0);
       $table->integer('numberOfPairs');
       $table->string('state')->default('Started');

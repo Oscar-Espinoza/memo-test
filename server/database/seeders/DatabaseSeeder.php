@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
   {
     $memoTests = [
       [
-        'name' => 'Memo Test 1',
+        'name' => 'Dogs memo',
         'images' => [
           'https://static.wixstatic.com/media/25f0d5_33b529c5633e47f3b7a426079be81939~mv2.jpg/v1/fill/w_256,h_256,fp_0.50_0.50,lg_1,q_80,enc_auto/25f0d5_33b529c5633e47f3b7a426079be81939~mv2.jpg',
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYDgmP70Fcw5NBB2mlO7F7iXdNzOopxKFPfA&usqp=CAU',
@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         ],
       ],
       [
-        'name' => 'Memo Test 2',
+        'name' => 'Cats memo',
         'images' => [
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTViNtCEnFKsj0jNAdXxwfZwHSppk-thA7qRL6GF_mmEfUHmjOFWD5bZMnkfSNDmPXsAHU&usqp=CAU',
           'https://d2ph5fj80uercy.cloudfront.net/04/cat2972.jpg',
