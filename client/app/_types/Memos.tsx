@@ -2,6 +2,7 @@ export type MemoTest = {
   id: number
   name: string
   images: string[]
+  highestScore: number
 }
 
 export type Card = {

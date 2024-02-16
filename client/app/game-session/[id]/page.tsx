@@ -56,7 +56,7 @@ function GameSessionPage({ params }: { params: { id: string } }) {
   const parsedSavedGame = savedGame ? JSON.parse(savedGame) : null
 
   const [cards, setCards] = useState<Card[]>(savedGame ? parsedSavedGame.cards : [])
-  const [retries, setRetries] = useState(0)
+  const [retries, setRetries] = useState<number>(savedGame ? parsedSavedGame.retries : 0)
   const [firstCard, setFirstCard] = useState<Card | null>(null)
   const [secondCard, setSecondCard] = useState<Card | null>(null)
   const [isFlippingDisabled, setIsFlippingDisabled] = useState(false);
@@ -75,15 +75,16 @@ function GameSessionPage({ params }: { params: { id: string } }) {
   }
 
   useEffect(() => {
-    if (data && data.gameSession && !savedGame) {
-      const initialCards = [...data.gameSession.memoTest.images, ...data.gameSession.memoTest.images].sort(() => Math.random() - 0.5).map((imageUrl: string, index: number) => ({
-        id: index,
-        imageUrl,
-        isFlipped: false
-      }))
+    if (data && data.gameSession) {
+      if (!savedGame){
+        const initialCards = [...data.gameSession.memoTest.images, ...data.gameSession.memoTest.images].sort(() => Math.random() - 0.5).map((imageUrl: string, index: number) => ({
+          id: index,
+          imageUrl,
+          isFlipped: false
+        }))
+        setCards(initialCards)
+      }
 
-      setCards(initialCards)
-      setRetries(data.gameSession.retries)
     }
   }, [data])
 
@@ -93,7 +94,7 @@ function GameSessionPage({ params }: { params: { id: string } }) {
     const resetTurn = () => {
       setFirstCard(null)
       setSecondCard(null)
-      setRetries(prev => prev + 1)
+      setRetries((prev: number) => prev + 1)
     }
 
     if (firstCard && secondCard) {
@@ -136,24 +137,11 @@ function GameSessionPage({ params }: { params: { id: string } }) {
   }, [score, cards.length, router, cards, updateGameSession]);
 
   useEffect(() => {
+    console.log('RETRIES', retries)
     if (cards.length !== 0) {
-      localStorage.setItem('gameState', JSON.stringify({ cards, score }));
+      localStorage.setItem('gameState', JSON.stringify({ cards, score, id, retries }));
     }
-  }, [score])
-
-  useEffect(() => {
-    updateGameSession({
-      variables: {
-        id: id,
-        retries: retries,
-      }
-    }).then(response => {
-      console.log("RESPONSE: ", response)
-    }).catch(error => {
-      console.error('Error updating game session:', error);
-    });
-  }, [id, retries, updateGameSession])
-
+  }, [score, retries])
 
 
   if (loading) return <p>Loading...</p>;

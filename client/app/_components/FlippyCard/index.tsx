@@ -10,7 +10,7 @@ function FlippyCard({ card, index, handleCardClick }: { card: Card, index: numbe
   return (
     <div className='flex justify-center items-center border flex-grow border-l-indigo-300 relative' onClick={() => handleCardClick(index)}>
       <div className={`absolute w-full h-full cardContainer ease-in duration-200 ${isFlipped && 'showBack'}`}>
-        <div className='cardFront absolute w-full h-full bg-slate-400'>{index}</div>
+        <div className='cardFront cursor-pointer absolute w-full h-full bg-slate-400 flex items-center justify-center font-extrabold text-2xl'>{index}</div>
 
         <div className='cardBack absolute w-full h-full bg-white text-black'><Image src={imageUrl} layout='fill' alt='card/image' /></div>
       </div>

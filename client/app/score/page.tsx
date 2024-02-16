@@ -7,7 +7,6 @@ import Link from 'next/link'
 function ScorePage() {
   const searchParams = useSearchParams()
   const score = searchParams.get('score')
-  console.log(score)
   return (
     <section className='min-h-screen flex flex-col gap-10 justify-center items-center relative'>
       <Link href='/' className='bg-white px-5 py-2 text-center rounded-lg cursor-pointer'>{'<--'} Home</Link>
