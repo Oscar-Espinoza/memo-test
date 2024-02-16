@@ -9,9 +9,8 @@ This project is a web application for playing memo tests, designed with a kid-fr
 - Git
 
 ## Setup and Installation
-1. Clone the repository:
+1. Clone the repository, choose one of these options:
   - git clone https://github.com/Oscar-Espinoza/memo-test.git
-    or
   - git clone git@github.com:Oscar-Espinoza/memo-test.git
 
 2. Navigate to the project directory:
