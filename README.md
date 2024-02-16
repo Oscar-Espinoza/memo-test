@@ -10,24 +10,24 @@ This project is a web application for playing memo tests, designed with a kid-fr
 
 ## Setup and Installation
 1. Clone the repository:
-  git clone https://github.com/Oscar-Espinoza/memo-test.git
+  - git clone https://github.com/Oscar-Espinoza/memo-test.git
     or
-  git clone git@github.com:Oscar-Espinoza/memo-test.git
+  - git clone git@github.com:Oscar-Espinoza/memo-test.git
 
 2. Navigate to the project directory:
   cd memo-test
 
-3. Start the application using Docker:
-  docker compose up -d
+## Development
+- Frontend: Navigate to the `client` directory. Use `npm install` to install dependencies and `npm run dev` to start the development server.
+- Backend: Navigate to the `backend` directory and run `docker compose up` then after it's running in docker, you can go to the docker exec if you use docker desktop and run `php artisan db:migrate` and `php artisan db:seed` or run from the terminal:
+- docker exec -it <container_name_or_id> php artisan db:migrate
+- docker exec -it <container_name_or_id> php artisan db:seed
 
 ## Usage
 - Visit `http://localhost:3000` to access the application.
+- Visit `http://localhost/graphiql` to access the graphql api playground.
 - Home page lists all available memo tests.
 - Click on a test to start or continue a game session.
-
-## Development
-- Frontend: Navigate to the `client` directory. Use `npm install` to install dependencies and `npm run dev` to start the development server.
-- Backend: Navigate to the `backend` directory. Follow setup instructions specific to the backend environment.
 
 ## Contributing
 Contributions are welcome! Please create a pull request with your proposed changes.
