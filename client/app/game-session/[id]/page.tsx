@@ -76,7 +76,7 @@ function GameSessionPage({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     if (data && data.gameSession) {
-      if (!savedGame){
+      if (!savedGame) {
         const initialCards = [...data.gameSession.memoTest.images, ...data.gameSession.memoTest.images].sort(() => Math.random() - 0.5).map((imageUrl: string, index: number) => ({
           id: index,
           imageUrl,
@@ -149,6 +149,7 @@ function GameSessionPage({ params }: { params: { id: string } }) {
 
   return (
     <div className='min-h-screen p-24 flex flex-col'>
+      <h2 className='text-4xl font-semibold text-white'>Retries: {retries}</h2>
       <div className='border border-white flex-grow min-h-full grid grid-cols-4 relative'>
         {cards.map((card: Card, index) => (
           <FlippyCard key={card.id} card={card} index={index} handleCardClick={handleCardClick} />

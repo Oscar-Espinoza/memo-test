@@ -30,7 +30,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col min-h-screen p-24 gap-10 items-center justify-center flex-wrap">
-      <div className="flex w-full justify-evenly">
+      <div className="flex w-full justify-center gap-10">
         {data.memoTests.map((memo: MemoTest) => (
           <MemoCard key={memo.name} memo={memo} />
         ))}

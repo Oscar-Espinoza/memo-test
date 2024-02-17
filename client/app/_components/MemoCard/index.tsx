@@ -50,11 +50,15 @@ function MemoCard({ memo }: { memo: MemoTest }) {
   };
 
   return (
-    <div className='px-10 py-5 bg-white text-black flex flex-col gap-2 text-center'>
-      <h2>{memo.name}</h2>
-      <p>{`${cardsLength} x ${cardsLength}`}</p>
-      {memo.highestScore ? <p>Highest score: {memo.highestScore}</p> : null}      
-      <button type='button' className='bg-gray-500 rounded py-1 text-white' onClick={handleStartClick}>Start</button>
+    <div className='max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col gap-2 text-center'>
+
+      <h2 className='text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>{memo.name}</h2>
+
+      <p className='font-normal text-gray-400'>{`${cardsLength} x ${cardsLength}`}</p>
+
+      {memo.highestScore ? <p className='font-normal text-gray-400'>Highest score: {memo.highestScore}</p> : null}
+
+      <button type='button' className='px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' onClick={handleStartClick}>Start</button>
     </div>
   )
 }
