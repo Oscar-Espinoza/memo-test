@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test-storybook": "test-storybook"
   },
   "dependencies": {
     "@apollo/client": "^3.9.5",
@@ -26,6 +27,7 @@
     "@storybook/nextjs": "^7.6.16",
     "@storybook/react": "^7.6.16",
     "@storybook/test": "^7.6.16",
+    "@storybook/test-runner": "^0.16.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

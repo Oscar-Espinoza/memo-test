@@ -137,7 +137,6 @@ function GameSessionPage({ params }: { params: { id: string } }) {
   }, [score, cards.length, router, cards, updateGameSession]);
 
   useEffect(() => {
-    console.log('RETRIES', retries)
     if (cards.length !== 0) {
       localStorage.setItem('gameState', JSON.stringify({ cards, score, id, retries }));
     }
