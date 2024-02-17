@@ -15,8 +15,8 @@ This project is a web application for playing memo tests, designed with a kid-fr
 2. Navigate to the project directory:
   cd memo-test
 
-## Development
-# Backend: 
+## Backend:
+  REMEMBER TO ADD THE .env file
   Navigate to the `backend` directory with 'cd server' and run:
 - `docker run --rm \
     -u "$(id -u):$(id -g)" \
@@ -32,7 +32,7 @@ This project is a web application for playing memo tests, designed with a kid-fr
 - ./vendor/bin/sail php artisan db:migrate
 - ./vendor/bin/sail php artisan db:seed
 
-# Frontend:
+## Frontend:
   Navigate to the `client` directory with 'cd client'. Use `npm install` to install dependencies and `npm run dev` to start the development server.
 
 ## Usage
@@ -41,7 +41,7 @@ This project is a web application for playing memo tests, designed with a kid-fr
 - Home page lists all available memo tests.
 - Click on a test to start or continue a game session.
 
-# Errors
+## Errors
 In case you encounter some of these errors during the local deploy.
 
 ### "The stream or file "/var/www/html/storage/logs/laravel.log" could not be opened: failed to open stream: Permission denied"
@@ -60,12 +60,3 @@ Just run:
 - php artisan cache:clear
 - php artisan config:clear
 - php artisan config:cache
-
-## Contributing
-Contributions are welcome! Please create a pull request with your proposed changes.
-
-## License
-Specify the license under which your project is released.
-
-## Acknowledgements
-- Mention any resources, libraries, or other acknowledgements here.
