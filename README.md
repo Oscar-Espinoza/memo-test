@@ -22,7 +22,7 @@ This project is a web application for playing memo tests, designed with a kid-fr
     -u "$(id -u):$(id -g)" \
     -v "$(pwd):/var/www/html" \
     -w /var/www/html \
-    laravelsail/php83-composer:latest \
+    laravelsail/php81-composer:latest \
     composer install --ignore-platform-reqs`
 
   this is to install composer temporarily and install dependencies, once it's done, run `docker-compose up` then after it's running in docker, you can go to the docker exec if you use docker desktop and run `php artisan db:migrate`and `php artisan db:seed` or run from the terminal:
@@ -30,8 +30,8 @@ This project is a web application for playing memo tests, designed with a kid-fr
 - docker exec -it <container_name_or_id> php artisan db:migrate
 - docker exec -it <container_name_or_id> php artisan db:seed
 
-# Frontend: Navigate to the `client` directory. Use `npm install` to install dependencies and `npm run dev` to start the development server.
-
+# Frontend:
+  Navigate to the `client` directory. Use `npm install` to install dependencies and `npm run dev` to start the development server.
 
 ## Usage
 - Visit `http://localhost:3000` to access the application.
@@ -47,4 +47,3 @@ Specify the license under which your project is released.
 
 ## Acknowledgements
 - Mention any resources, libraries, or other acknowledgements here.
-
