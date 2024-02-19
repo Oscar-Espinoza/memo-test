@@ -28,7 +28,6 @@ class MemoTest extends Model
     parent::boot();
 
     static::deleting(function ($memoTest) {
-      // Delete all related game sessions
       $memoTest->gameSessions()->delete();
     });
   }

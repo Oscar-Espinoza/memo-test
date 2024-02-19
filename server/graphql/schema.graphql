@@ -1,4 +1,3 @@
-"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
 enum State {
@@ -39,6 +38,8 @@ type Mutation {
   addImageMemoTest(id: ID!, newImages: [String]): MemoTest! @field(resolver: "App\\GraphQL\\Mutations\\AddImageMemoTest")
 
   deleteImageMemoTest(id: ID!, imageIndex: Int!): MemoTest! @field(resolver: "App\\GraphQL\\Mutations\\DeleteImageMemoTest")
-  createMemoTest(name: String!, images: [String]): MemoTest! @create
+
+  createMemoTest(name: String! @rules(apply: ["required", "unique:memo_tests,name"]), images: [String]): MemoTest! @create
+
   deleteMemoTest(id: ID! @whereKey): MemoTest! @delete
 }

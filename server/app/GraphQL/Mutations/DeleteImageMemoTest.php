@@ -16,7 +16,6 @@ class DeleteImageMemoTest
       $memoTest->images = $images;
       $memoTest->save();
     } else {
-      // Handle the error case where the index is not valid
       throw new \Exception("Image index not valid.");
     }
 

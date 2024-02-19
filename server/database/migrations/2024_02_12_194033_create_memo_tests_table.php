@@ -6,24 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-      Schema::create('memo_tests', function (Blueprint $table) {
-        $table->id();
-        $table->string('name');
-        $table->json('images');
-        $table->timestamps();
-      });
-    }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('memo_tests');
-    }
+  public function up(): void
+  {
+    Schema::create('memo_tests', function (Blueprint $table) {
+      $table->id();
+      $table->string('name')->unique();
+      $table->json('images');
+      $table->timestamps();
+    });
+  }
+
+  public function down(): void
+  {
+    Schema::dropIfExists('memo_tests');
+  }
 };
