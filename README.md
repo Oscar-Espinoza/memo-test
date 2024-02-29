@@ -60,3 +60,11 @@ Just run:
 - php artisan cache:clear
 - php artisan config:clear
 - php artisan config:cache
+
+## Tests
+Once you migrated and seeded the database, you should be able to run the tests and pass, for this you have to be in the server folder and run:
+- ./vendor/bin/sail php artisan test
+
+## Storybook
+After doing npm install, you should be able to roon storybook's server, for this just run:
+- npm run storybook
