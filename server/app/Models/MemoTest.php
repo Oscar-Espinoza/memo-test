@@ -11,7 +11,7 @@ class MemoTest extends Model
   use HasFactory;
 
   protected $fillable = [
-    'name',
+    'name', 'highestScore',
   ];
 
   protected $casts = [

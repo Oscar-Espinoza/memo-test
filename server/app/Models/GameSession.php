@@ -28,4 +28,12 @@ class GameSession extends Model
   {
     return $value instanceof \App\Enums\State ? $value->value : $value;
   }
+
+  public function calculateScore()
+{
+    $score = ($this->numberOfPairs / max($this->retries, 1)) * 100;
+    $this->score = round($score);
+    $this->save();
+    return $score;
+}
 }

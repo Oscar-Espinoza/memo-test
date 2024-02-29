@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import ContextWrapper from "./_components/ContextWrapper";
+import Providers from "./_providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,10 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-red-950">
-        <ContextWrapper>
+      <body className="">
+        <Providers>
           {children}
-        </ContextWrapper>
+        </Providers>
       </body>
     </html>
   );

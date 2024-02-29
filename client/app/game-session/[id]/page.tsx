@@ -1,34 +1,14 @@
 'use client'
 
-import FlippyCard from '@/app/_components/FlippyCard'
 import { Card, MemoTest } from '@/app/_types/Memos'
 import React, { useEffect, useState } from 'react'
 import { useQuery, gql, useMutation } from '@apollo/client';
 import { useRouter } from 'next/navigation';
-
-const GET_GAME_SESSION = gql`
-  query GetGameSession($id: ID!) {
-    gameSession(id: $id) {
-      id
-      memoTest {
-        id
-        images
-      }
-      numberOfPairs
-      retries
-      score
-      state
-    }
-  }
-`;
-
-const UPDATE_GAME_SESSION = gql`
-  mutation UpdateGameSession($id: ID!, $retries: Int!, $state: State) {
-    updateGameSession(id: $id, retries: $retries, state: $state) {
-      score
-    }
-  }
-`;
+import GameSessionTable from '@/app/_components/GameSessionTable';
+import { UPDATE_GAME_SESSION } from '@/app/_graphql/gameSessions/mutations';
+import { GET_GAME_SESSION } from '@/app/_graphql/gameSessions/queries';
+import {Progress} from "@nextui-org/react";
+import Image from 'next/image';
 
 function GameSessionPage({ params }: { params: { id: string } }) {
   const { id } = params
@@ -52,15 +32,12 @@ function GameSessionPage({ params }: { params: { id: string } }) {
     skip: !id || skipQuery,
   });
 
-  const savedGame = localStorage.getItem('gameState');
-  const parsedSavedGame = savedGame ? JSON.parse(savedGame) : null
-
-  const [cards, setCards] = useState<Card[]>(savedGame ? parsedSavedGame.cards : [])
-  const [retries, setRetries] = useState<number>(savedGame ? parsedSavedGame.retries : 0)
+  const [cards, setCards] = useState<Card[]>([])
+  const [retries, setRetries] = useState<number>(0)
   const [firstCard, setFirstCard] = useState<Card | null>(null)
   const [secondCard, setSecondCard] = useState<Card | null>(null)
   const [isFlippingDisabled, setIsFlippingDisabled] = useState(false);
-  const [score, setScore] = useState<number>(savedGame ? parsedSavedGame.score : 0)
+  const [score, setScore] = useState<number>(0)
 
   const handleCardClick = (cardIndex: number) => {
     if (isFlippingDisabled) return;
@@ -75,6 +52,23 @@ function GameSessionPage({ params }: { params: { id: string } }) {
   }
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      const gameState = localStorage.getItem('gameState');
+      if (gameState) {
+        setSkipQuery(true);
+        const parsedSavedGame = JSON.parse(gameState);
+        setCards(parsedSavedGame.cards);
+        setRetries(parsedSavedGame.retries);
+        setScore(parsedSavedGame.score);
+      } else {
+        setSkipQuery(false);
+      }
+    }
+  }, []);
+  
+
+  useEffect(() => {
+    const savedGame = localStorage.getItem('gameState');
     if (data && data.gameSession) {
       if (!savedGame) {
         const initialCards = [...data.gameSession.memoTest.images, ...data.gameSession.memoTest.images].sort(() => Math.random() - 0.5).map((imageUrl: string, index: number) => ({
@@ -90,7 +84,6 @@ function GameSessionPage({ params }: { params: { id: string } }) {
 
 
   useEffect(() => {
-
     const resetTurn = () => {
       setFirstCard(null)
       setSecondCard(null)
@@ -115,7 +108,6 @@ function GameSessionPage({ params }: { params: { id: string } }) {
         setIsFlippingDisabled(false)
         resetTurn();
       }, 1000);
-
     }
   }, [firstCard, secondCard]);
 
@@ -134,7 +126,7 @@ function GameSessionPage({ params }: { params: { id: string } }) {
         console.error('Error updating game session:', error);
       });
     }
-  }, [score, cards.length, router, cards, updateGameSession]);
+  }, [score, cards.length, router, cards, updateGameSession, id, retries]);
 
   useEffect(() => {
     if (cards.length !== 0) {
@@ -147,13 +139,9 @@ function GameSessionPage({ params }: { params: { id: string } }) {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className='min-h-screen p-24 flex flex-col'>
-      <h2 className='text-4xl font-semibold text-white'>Retries: {retries}</h2>
-      <div className='border border-white flex-grow min-h-full grid grid-cols-4 relative'>
-        {cards.map((card: Card, index) => (
-          <FlippyCard key={card.id} card={card} index={index} handleCardClick={handleCardClick} />
-        ))}
-      </div>
+    <div className='min-h-screen p-24 flex flex-col relative'>
+      <Image fill alt='game-session-bg-image' src={'/game_session_bg.webp'} className=' -z-10' />
+      <GameSessionTable cards={cards} handleCardClick={handleCardClick} />
     </div>
   )
 }

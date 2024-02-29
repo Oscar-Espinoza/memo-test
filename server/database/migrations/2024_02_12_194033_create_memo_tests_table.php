@@ -13,6 +13,7 @@ return new class extends Migration
       $table->id();
       $table->string('name')->unique();
       $table->json('images');
+      $table->integer('highestScore')->default(0);
       $table->timestamps();
     });
   }

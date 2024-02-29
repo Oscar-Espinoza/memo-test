@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Models\GameSession;
-use App\Observers\GameSessionObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,6 +21,5 @@ class AppServiceProvider extends ServiceProvider
    */
   public function boot(): void
   {
-    GameSession::observe(GameSessionObserver::class);
   }
 }

@@ -3,24 +3,39 @@
 import Link from "next/link";
 import MemoCard from "./_components/MemoCard";
 import { MemoTest } from "./_types/Memos";
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+import CoolBackground from "./_components/CoolBackground";
+import { MouseEvent, useRef } from "react";
+import { motion } from "framer-motion";
+import { GET_MEMO_TESTS } from "./_graphql/memoTests/queries";
 
-const GET_MEMO_TESTS = gql`
-  query GetMemoTests {
-    memoTests {
-      id
-      name
-      images
-      highestScore
+const container = {
+  hidden: { opacity: 1, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2
     }
   }
-`;
+}
+
+const item = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1
+  }
+}
 
 
 export default function Home() {
   const { loading, error, data } = useQuery(GET_MEMO_TESTS, {
-    fetchPolicy: 'cache-and-network'
+    fetchPolicy: 'no-cache'
   });
+
+  const parentRef = useRef<HTMLElement>(null);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :</p>;
@@ -28,14 +43,31 @@ export default function Home() {
   const lastGame = localStorage.getItem('gameState')
   const lastGameId = lastGame ? JSON.parse(lastGame).id : null
 
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (!parentRef.current) return;
+
+    const xPercent = e.clientX / document.documentElement.clientWidth * 100;
+    parentRef.current.style.setProperty('--mouse-x-percent', `${xPercent}%`);
+  };
+
+
   return (
-    <main className="flex flex-col min-h-screen p-24 gap-10 items-center justify-center flex-wrap">
-      <div className="flex w-full justify-center gap-10">
+    <main className="relative w-full" onMouseMove={handleMouseMove} ref={parentRef}>
+      <CoolBackground />
+      
+      <motion.ul
+        className="flex min-h-screen p-24 gap-10 items-center justify-center flex-wrap relative w-full"
+        variants={container}
+        initial="hidden"
+        animate="visible"
+      >
         {data.memoTests.map((memo: MemoTest) => (
-          <MemoCard key={memo.name} memo={memo} />
+          <motion.li key={memo.name} variants={item}>
+            <MemoCard  memo={memo} />
+          </motion.li>
         ))}
-      </div>
-      {lastGame && <Link href={`/game-session/${lastGameId}`} className="px-5 py-3 bg-blue-300 text-black max-w-fit rounded-lg">Continue last game</Link>}
+      {lastGame && <Link href={`/game-session/${lastGameId}`} className="px-5 py-3 bg-blue-300 text-black max-w-fit rounded-lg relative">Continue last game</Link>}
+      </motion.ul>
     </main>
   );
 }
