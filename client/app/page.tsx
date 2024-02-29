@@ -37,6 +37,8 @@ export default function Home() {
 
   const parentRef = useRef<HTMLElement>(null);
 
+  console.log(loading)
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :</p>;
 

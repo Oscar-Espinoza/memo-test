@@ -13,19 +13,19 @@ class DatabaseSeeder extends Seeder
       [
         'name' => 'Dogs memo',
         'images' => [
-          'https://static.wixstatic.com/media/25f0d5_33b529c5633e47f3b7a426079be81939~mv2.jpg/v1/fill/w_256,h_256,fp_0.50_0.50,lg_1,q_80,enc_auto/25f0d5_33b529c5633e47f3b7a426079be81939~mv2.jpg',
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYDgmP70Fcw5NBB2mlO7F7iXdNzOopxKFPfA&usqp=CAU',
-          'https://pawzlove-media.s3.us-east-2.amazonaws.com/images/urlscan/21687/urlscan_image/78e89e6a7686c13f87cf888b4373a0fd.jpg',
-          'https://fablepets.com/cdn/shop/files/IG_carousel_artieandbrody_256x256_c0a7306d-7b43-4d6a-ad16-7deef04fdc47.png?v=1652401112',
+          'https://static.wikia.nocookie.net/paw-patrol/images/7/71/Chase_PNG.png/revision/latest?cb=20220815044513',
+          'https://www.hepper.com/wp-content/uploads/2022/09/Skye-Paw-Patrol-Spin-Master-Ltd.webp',
+          'https://static.wikia.nocookie.net/paw-patrol/images/6/64/Marshall_PNG.png/revision/latest?cb=20150520174150',
+          'https://www.k9ofmine.com/wp-content/uploads/2018/02/rubble-paw-patrol.png',
         ],
       ],
       [
         'name' => 'Cats memo',
         'images' => [
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTViNtCEnFKsj0jNAdXxwfZwHSppk-thA7qRL6GF_mmEfUHmjOFWD5bZMnkfSNDmPXsAHU&usqp=CAU',
-          'https://d2ph5fj80uercy.cloudfront.net/04/cat2972.jpg',
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEVEri5asu9JpiEElzD9GZli1EglOccc6WZA&usqp=CAU',
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX8ny7x-6Za_4e6MsT1dXL8plTV0dmi4GTIg&usqp=CAU',
+          'https://static.wikia.nocookie.net/paw-patrol/images/a/aa/Cat_Rubble_%28Transparent%29.png/revision/latest?cb=20230826002943',
+          'https://static.wikia.nocookie.net/paw-patrol/images/7/75/Cat_Marshall_%28Transparent%29.png/revision/latest?cb=20230325175807',
+          'https://static.wikia.nocookie.net/paw-patrol/images/e/e7/Leo_Official_Art.png/revision/latest?cb=20230310052530',
+          'https://i.pinimg.com/originals/9f/76/42/9f764207f376aca826f9781d771427eb.png',
         ],
       ],
     ];
