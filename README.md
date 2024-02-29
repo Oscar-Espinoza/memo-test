@@ -18,18 +18,18 @@ This project is a web application for playing memo tests, designed with a kid-fr
 ## Backend:
   REMEMBER TO ADD THE .env file
   Navigate to the `backend` directory with 'cd server' and run:
-- docker run --rm \
-    -u "$(id -u):$(id -g)" \
-    -v "$(pwd):/var/www/html" \
-    -w /var/www/html \
-    laravelsail/php81-composer:latest \
+- docker run --rm \\
+    -u "$(id -u):$(id -g)" \\
+    -v "$(pwd):/var/www/html" \\
+    -w /var/www/html \\
+    laravelsail/php81-composer:latest \\
     composer install --ignore-platform-reqs
 
     If you encounter the message "/var/www/html/vendor/doctrine does not exist and could not be created" you can run the command with sudo at the start or as a super user.
 
   this is to install composer temporarily and install dependencies, once it's done, run `docker-compose up`, now, in order to migrate and seed the database, run:
 
-- ./vendor/bin/sail php artisan db:migrate
+- ./vendor/bin/sail php artisan migrate
 - ./vendor/bin/sail php artisan db:seed
 
 ## Frontend:
