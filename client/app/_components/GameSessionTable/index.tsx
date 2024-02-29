@@ -29,12 +29,10 @@ function GameSessionTable({cards, handleCardClick}: {cards: Card[], handleCardCl
           className="relative w-full flex-grow grid grid-cols-4 gap-10"
           variants={container}
           initial="hidden"
-          animate="visible"
+          animate={cards.length > 0 ? 'visible' : 'hidden'}
         >
           {cards.map((card: Card, index) => (
-            <motion.li 
-              key={card.id}
-              variants={cardVariant}
+            <motion.li key={card.id} variants={cardVariant}
             >
               <FlippyCard card={card} index={index} handleCardClick={handleCardClick} />
             </motion.li>

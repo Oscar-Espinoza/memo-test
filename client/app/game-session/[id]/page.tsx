@@ -132,7 +132,7 @@ function GameSessionPage({ params }: { params: { id: string } }) {
     if (cards.length !== 0) {
       localStorage.setItem('gameState', JSON.stringify({ cards, score, id, retries }));
     }
-  }, [score, retries])
+  }, [score, retries, cards, id])
 
 
   if (loading) return <p>Loading...</p>;

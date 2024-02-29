@@ -33,19 +33,20 @@ function MemoCard({ memo }: { memo: MemoTest }) {
   };
 
   return (
-    <Card  shadow="sm" className='rounded-xl overflow-hidden' isPressable onPress={handleStartClick}>
-          <CardBody className="overflow-hidden rounded-top-xl p-0">
+    <Card  shadow="sm" className='rounded-xl overflow-hidden border border-slate-700' isPressable onPress={handleStartClick}>
+          <CardBody className="overflow-hidden rounded-top-xl p-0 w-60 h-60 bg-purple-950 ">
             <Image
-            width={240}
-              
+              as={NextImage}
+              width={240}
+              height={240}
               alt='Memo image'
-              className='transform hover:scale-110 transition-transform-opacity motion-reduce:transition-none !duration-300'
+              className='transform hover:scale-110 transition-transform-opacity motion-reduce:transition-none !duration-300 object-cover'
               src={memo.images[0]}
             />
           </CardBody>
           <CardFooter className="bg-yellow-400 text-purple-950 text-small justify-between p-2 flex flex-col">
             <b>{memo.name}</b>
-            <p className="">{memo.highestScore}</p>
+            <p className="">Highest score: {memo.highestScore}</p>
           </CardFooter>
         </Card>
   )

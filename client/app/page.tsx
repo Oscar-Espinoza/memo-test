@@ -32,7 +32,7 @@ const item = {
 
 export default function Home() {
   const { loading, error, data } = useQuery(GET_MEMO_TESTS, {
-    fetchPolicy: 'no-cache'
+    fetchPolicy: 'cache-and-network'
   });
 
   const parentRef = useRef<HTMLElement>(null);
