@@ -67,4 +67,4 @@ Once you migrated and seeded the database, you should be able to run the tests a
 
 ## Storybook
 After doing npm install, you should be able to roon storybook's server, for this just run:
-- npm run storybook
+- npm run storybook 
